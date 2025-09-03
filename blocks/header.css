@@ -1,0 +1,15 @@
+.header {
+  max-width: 880px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.header__logo {
+  margin: 45px 0 41px;
+}
+
+.header__line {
+  width: 100%;
+  border: 1px solid #545454;
+  opacity: 70%;
+}
