@@ -69,6 +69,7 @@
   border: none;
   font-size: 14px;
   line-height: 1;
+  height: 27.26px;
 }
 
 .popup__submit-button {
@@ -85,4 +86,8 @@
 
 .popup__submit-button:hover {
   opacity: 80%;
+}
+
+.popup__opened {
+  display: block;
 }
