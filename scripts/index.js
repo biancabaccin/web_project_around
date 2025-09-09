@@ -1,5 +1,5 @@
-const editButton = document.querySelector(".profile__edit-button");
-const closeButton = document.querySelector(".popup__close-button");
+const editButton = document.querySelectorAll(".profile__edit-button");
+const closeButton = document.querySelectorAll(".popup__close-button");
 const nameInput = document.querySelector("#name");
 const aboutInput = document.querySelector("#about");
 
@@ -21,8 +21,13 @@ function closePopup() {
   popup.classList.remove("popup__opened");
 }
 
-editButton.addEventListener("click", openPopup);
-closeButton.addEventListener("click", closePopup);
+editButton.forEach((button) => {
+  button.addEventListener("click", openPopup);
+});
+
+closeButton.forEach((button) => {
+  button.addEventListener("click", closePopup);
+});
 
 // Submit
 
