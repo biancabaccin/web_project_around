@@ -6,8 +6,8 @@ const aboutInput = document.querySelector("#about");
 const popup = document.querySelector(".popup");
 
 function openPopup() {
-  let currentName = document.querySelector(".profile__name").textContent;
-  let currentAbout = document.querySelector(
+  const currentName = document.querySelector(".profile__name").textContent;
+  const currentAbout = document.querySelector(
     ".profile__description"
   ).textContent;
 
@@ -31,19 +31,19 @@ closeButton.forEach((button) => {
 
 // Submit
 
-let formElement = document.querySelector(".popup__form");
+const formElement = document.querySelector(".popup__form");
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
-  let nameInput = document.querySelector("#name");
-  let aboutInput = document.querySelector("#about");
+  const nameInput = document.querySelector("#name");
+  const aboutInput = document.querySelector("#about");
 
-  let valueName = nameInput.value;
-  let valueAbout = aboutInput.value;
+  const valueName = nameInput.value;
+  const valueAbout = aboutInput.value;
 
-  let profileName = document.querySelector(".profile__name");
-  let profileAbout = document.querySelector(".profile__description");
+  const profileName = document.querySelector(".profile__name");
+  const profileAbout = document.querySelector(".profile__description");
 
   profileName.textContent = valueName;
   profileAbout.textContent = valueAbout;

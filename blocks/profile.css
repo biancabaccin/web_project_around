@@ -30,12 +30,14 @@
   line-height: 1.14;
   font-weight: 500;
   margin: 0 0 16px 0;
+  overflow: hidden;
 }
 
 .profile__description {
   grid-area: description;
   font-size: 18px;
   line-height: 1;
+  overflow: hidden;
 }
 
 .profile__edit-button_mod-24px {
