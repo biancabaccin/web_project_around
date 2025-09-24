@@ -56,83 +56,6 @@ formElement.addEventListener("submit", handleProfileFormSubmit);
 
 //Cards-popup
 
-const addButton = document.querySelectorAll(".profile__add-button");
-const cardsCloseButton = document.querySelectorAll(
-  ".cards-popup__close-button"
-);
-
-const cardsPopup = document.querySelector(".cards-popup");
-
-function openCardsPopup() {
-  cardsPopup.classList.add("cards-popup__opened");
-}
-
-function closeCardsPopup() {
-  cardsPopup.classList.remove("cards-popup__opened");
-}
-
-addButton.forEach((button) => {
-  button.addEventListener("click", openCardsPopup);
-});
-
-cardsCloseButton.forEach((button) => {
-  button.addEventListener("click", closeCardsPopup);
-});
-
-//Create-Card
-
-document.addEventListener("DOMContentLoaded", function () {
-  const existingLikeButtons = document.querySelectorAll(
-    ".elements__like-button"
-  );
-  existingLikeButtons.forEach((button) => {
-    button.addEventListener("click", handleLikeClick);
-  });
-});
-
-function createCard(name, link) {
-  const cardTemplate = document.querySelector(".card__template").content;
-
-  const cardElement = cardTemplate.cloneNode(true);
-
-  cardElement.querySelector(".card__image").src = link;
-  cardElement.querySelector(".card__image").alt = name;
-  cardElement.querySelector(".card__name").textContent = name;
-
-  const likeButton = cardElement.querySelector(".card__like-button");
-  likeButton.addEventListener("click", handleLikeClick);
-
-  return cardElement;
-}
-
-function handleLikeClick(evt) {
-  evt.target.classList.toggle("elements__like-button_active");
-}
-
-//Add-Card
-
-function addCard(name, link) {
-  const newCard = createCard(name, link);
-
-  const cardsContainer = document.querySelector(".elements");
-  cardsContainer.prepend(newCard);
-}
-
-const addCardForm = document.querySelector(".cards-popup__form");
-
-addCardForm.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-
-  const cardnameInput = document.querySelector("#title");
-  const linkInput = document.querySelector("#link");
-
-  addCard(cardnameInput.value, linkInput.value);
-
-  addCardForm.reset();
-
-  closeCardsPopup();
-});
-
 const initialCards = [
   {
     name: "Vale de Yosemite",
@@ -159,3 +82,86 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
   },
 ];
+
+initialCards.reverse().forEach((card) => {
+  addCard(card.name, card.link);
+});
+
+const addButton = document.querySelectorAll(".profile__add-button");
+const cardsCloseButton = document.querySelectorAll(
+  ".cards-popup__close-button"
+);
+
+const cardsPopup = document.querySelector(".cards-popup");
+
+function openCardsPopup() {
+  cardsPopup.classList.add("cards-popup__opened");
+}
+
+function closeCardsPopup() {
+  cardsPopup.classList.remove("cards-popup__opened");
+}
+
+addButton.forEach((button) => {
+  button.addEventListener("click", openCardsPopup);
+});
+
+cardsCloseButton.forEach((button) => {
+  button.addEventListener("click", closeCardsPopup);
+});
+
+//Create-Card
+
+document.addEventListener("DOMContentLoaded", () => {
+  const existingLikeButtons = document.querySelectorAll(
+    ".elements__like-button"
+  );
+  existingLikeButtons.forEach((button) => {
+    button.addEventListener("click", handleLikeClick);
+  });
+});
+
+function createCard(name, link) {
+  const cardTemplate = document.querySelector(".elements__template").content;
+  const cardElement = cardTemplate.cloneNode(true);
+
+  const imageTemplate = cardElement.querySelector(".elements__image");
+  const titleTemplate = cardElement.querySelector(".elements__name");
+  const likeButton = cardElement.querySelector(".elements__like-button");
+
+  imageTemplate.src = link;
+  imageTemplate.alt = name;
+  titleTemplate.textContent = name;
+
+  likeButton.addEventListener("click", handleLikeClick);
+
+  return cardElement;
+}
+
+function handleLikeClick(evt) {
+  evt.target.classList.toggle("elements__like-button_active");
+}
+
+//Add-Card
+
+function addCard(name, link) {
+  const newCard = createCard(name, link);
+
+  const cardsContainer = document.querySelector(".elements");
+  cardsContainer.prepend(newCard);
+}
+
+const addCardForm = document.querySelector(".cards-popup__form");
+
+addCardForm.addEventListener("submit", function (evt) {
+  evt.preventDefault();
+
+  const cardnameInput = document.querySelector("#cards-title");
+  const linkInput = document.querySelector("#cards-link");
+
+  addCard(cardnameInput.value, linkInput.value);
+
+  addCardForm.reset();
+
+  closeCardsPopup();
+});

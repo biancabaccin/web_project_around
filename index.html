@@ -72,101 +72,19 @@
         </section>
 
         <section class="elements">
-          <div class="elements__element">
-            <div class="elements__rectangle">
-              <figure class="elements__image-box">
-                <img
-                  src="./images/elements_image_1.jpg"
-                  alt="Foto do Vale de Yosemite"
-                  class="elements__image"
-                />
-              </figure>
-              <div class="elements__bottom-box">
-                <p class="elements__name">Vale de Yosemite</p>
-                <button class="elements__like-button"></button>
+          <template class="elements__template">
+            <div class="elements__element">
+              <div class="elements__rectangle">
+                <figure class="elements__image-box">
+                  <img src="" alt="" class="elements__image" id="link" />
+                </figure>
+                <div class="elements__bottom-box">
+                  <p class="elements__name"></p>
+                  <button class="elements__like-button"></button>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div class="elements__element">
-            <div class="elements__rectangle">
-              <figure class="elements__image-box">
-                <img
-                  src="./images/elements_image_2.jpg"
-                  alt="Foto do Lago Louise"
-                  class="elements__image"
-                />
-              </figure>
-              <div class="elements__bottom-box">
-                <p class="elements__name">Lago Louise</p>
-                <button class="elements__like-button"></button>
-              </div>
-            </div>
-          </div>
-
-          <div class="elements__element">
-            <div class="elements__rectangle">
-              <figure class="elements__image-box">
-                <img
-                  src="./images/elements_image_3.jpg"
-                  alt="Foto do Montanhas Care..."
-                  class="elements__image"
-                />
-              </figure>
-              <div class="elements__bottom-box">
-                <p class="elements__name">Montanhas Carecas</p>
-                <button class="elements__like-button"></button>
-              </div>
-            </div>
-          </div>
-
-          <div class="elements__element">
-            <div class="elements__rectangle">
-              <figure class="elements__image-box">
-                <img
-                  src="./images/elements_image_4.jpg"
-                  alt="Foto do Latemar"
-                  class="elements__image"
-                />
-              </figure>
-              <div class="elements__bottom-box">
-                <p class="elements__name">Latemar</p>
-                <button class="elements__like-button"></button>
-              </div>
-            </div>
-          </div>
-
-          <div class="elements__element">
-            <div class="elements__rectangle">
-              <figure class="elements__image-box">
-                <img
-                  src="./images/elements_image_5.jpg"
-                  alt="Foto do Parque Nacional da Vanoise"
-                  class="elements__image"
-                />
-              </figure>
-              <div class="elements__bottom-box">
-                <p class="elements__name">Parque Nacional da Vanoise</p>
-                <button class="elements__like-button"></button>
-              </div>
-            </div>
-          </div>
-
-          <div class="elements__element">
-            <div class="elements__rectangle">
-              <figure class="elements__image-box">
-                <img
-                  src="./images/elements_image_6.jpg"
-                  alt="Foto do Lago di Braies"
-                  class="elements__image"
-                />
-              </figure>
-              <div class="elements__bottom-box">
-                <p class="elements__name">Lago di Braies</p>
-                <button class="elements__like-button"></button>
-              </div>
-            </div>
-          </div>
+          </template>
         </section>
       </main>
 
@@ -249,7 +167,7 @@
               class="cards-popup__input"
               type="text"
               placeholder="Título"
-              id="title"
+              id="cards-title"
               required
             />
           </fieldset>
@@ -258,7 +176,7 @@
               class="cards-popup__input"
               type="url"
               placeholder="Link de imagem"
-              id="link"
+              id="cards-link"
               required
             />
           </fieldset>
@@ -266,24 +184,6 @@
         </form>
       </div>
     </div>
-
-    <template class="card__template">
-      <div class="card__rectangle">
-        <figure class="card__image-box">
-          <img src="" alt="" class="card__image" id="link" />
-        </figure>
-        <div class="card__bottom-box">
-          <p class="card__name" id="title"></p>
-          <button class="card__like-button">
-            <img
-              src="./images/like_button.svg"
-              alt="Botão de Like"
-              class="card__like-vector"
-            />
-          </button>
-        </div>
-      </div>
-    </template>
 
     <script src="./scripts/index.js"></script>
   </body>
