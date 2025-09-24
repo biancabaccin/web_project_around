@@ -52,6 +52,7 @@
 }
 
 .elements__name {
+  max-width: 225px;
   font-weight: 900;
   font-size: 24px;
   line-height: 1;
@@ -65,16 +66,26 @@
   background-color: transparent;
   cursor: pointer;
   width: 21px;
-  max-height: 19px;
+  height: 19px;
   align-self: center;
+  background-image: url("../images/like_button.svg");
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .elements__like-button:hover {
   opacity: 50%;
 }
 
-.elements__like-button:active {
+/* .elements__like-button:active {
   background: url("../images/like_button_black.png");
+} */
+
+.elements__like-button_active {
+  background-image: url("../images/like_button_black.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 @media screen and (max-width: 800px) {

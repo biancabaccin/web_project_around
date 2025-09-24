@@ -81,6 +81,15 @@ cardsCloseButton.forEach((button) => {
 
 //Create-Card
 
+document.addEventListener("DOMContentLoaded", function () {
+  const existingLikeButtons = document.querySelectorAll(
+    ".elements__like-button"
+  );
+  existingLikeButtons.forEach((button) => {
+    button.addEventListener("click", handleLikeClick);
+  });
+});
+
 function createCard(name, link) {
   const cardTemplate = document.querySelector(".card__template").content;
 
@@ -90,7 +99,14 @@ function createCard(name, link) {
   cardElement.querySelector(".card__image").alt = name;
   cardElement.querySelector(".card__name").textContent = name;
 
+  const likeButton = cardElement.querySelector(".card__like-button");
+  likeButton.addEventListener("click", handleLikeClick);
+
   return cardElement;
+}
+
+function handleLikeClick(evt) {
+  evt.target.classList.toggle("elements__like-button_active");
 }
 
 //Add-Card
@@ -116,29 +132,6 @@ addCardForm.addEventListener("submit", function (evt) {
 
   closeCardsPopup();
 });
-
-// // Submit
-
-// const formElement = document.querySelector(".profile-popup__form");
-
-// function handleProfileFormSubmit(evt) {
-//   evt.preventDefault();
-
-//   const valueName = nameInput.value;
-//   const valueAbout = aboutInput.value;
-
-//   const profileName = document.querySelector(".profile__name");
-//   const profileAbout = document.querySelector(".profile__description");
-
-//   profileName.textContent = valueName;
-//   profileAbout.textContent = valueAbout;
-
-//   closePopup();
-// }
-
-// formElement.addEventListener("submit", handleProfileFormSubmit);
-
-//Cards
 
 const initialCards = [
   {
