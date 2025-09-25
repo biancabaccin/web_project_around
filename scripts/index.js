@@ -141,6 +141,12 @@ function createCard(name, link) {
 
   likeButton.addEventListener("click", handleLikeClick);
 
+  const imageButton = cardElement.querySelector(".elements__image-box");
+
+  imageButton.addEventListener("click", () => {
+    openPhotoPopup(link, name);
+  });
+
   return cardElement;
 }
 
@@ -171,3 +177,24 @@ addCardForm.addEventListener("submit", function (evt) {
 
   closeCardsPopup();
 });
+
+//Photo-popup
+
+const photoPopup = document.querySelector(".photo-popup");
+const photoCloseButton = document.querySelector(".photo-popup__close-button");
+const popupImage = document.querySelector(".photo-popup__image");
+const popupName = document.querySelector(".photo-popup__name");
+
+function openPhotoPopup(imageSrc, imageName) {
+  popupImage.src = imageSrc;
+  popupImage.alt = imageName;
+  popupName.textContent = imageName;
+
+  photoPopup.classList.add("photo-popup__opened");
+}
+
+function closePhotoPopup() {
+  photoPopup.classList.remove("photo-popup__opened");
+}
+
+photoCloseButton.addEventListener("click", closePhotoPopup);
