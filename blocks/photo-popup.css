@@ -28,7 +28,7 @@
   right: -45px;
 }
 
-.photo-popup__close-button_mod-40px:hover {
+.photo-popup__close-button:hover {
   opacity: 60%;
 }
 
