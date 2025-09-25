@@ -127,11 +127,17 @@ function createCard(name, link) {
 
   const imageTemplate = cardElement.querySelector(".elements__image");
   const titleTemplate = cardElement.querySelector(".elements__name");
+  const deleteButton = cardElement.querySelector(".elements__delete-button");
   const likeButton = cardElement.querySelector(".elements__like-button");
 
   imageTemplate.src = link;
   imageTemplate.alt = name;
   titleTemplate.textContent = name;
+
+  deleteButton.addEventListener("click", (evt) => {
+    const cardToDelete = evt.target.closest(".elements__element");
+    cardToDelete.remove();
+  });
 
   likeButton.addEventListener("click", handleLikeClick);
 
