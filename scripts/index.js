@@ -89,9 +89,11 @@ const hasInvalidInput = (inputList) => {
 
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add("button_inactive");
+    buttonElement.classList.add("profile-popup__submit-button_inactive");
+    // buttonElement.setAttribute("disabled", true);
   } else {
-    buttonElement.classList.remove("button_inactive");
+    buttonElement.classList.remove("profile-popup__submit-button_inactive");
+    // buttonElement.removeAttribute("disabled");
   }
 };
 
@@ -102,8 +104,6 @@ const setEventListeners = (formElement) => {
   const buttonElement = formElement.querySelector(
     ".profile-popup__submit-button"
   );
-
-  toggleButtonState(inputList, buttonElement);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
@@ -122,7 +122,13 @@ const enableValidation = () => {
       evt.preventDefault();
     });
 
-    setEventListeners(formElement);
+    const fieldsetList = Array.from(
+      formElement.querySelectorAll(".profile-popup__fieldset")
+    );
+
+    fieldsetList.forEach((fieldset) => {
+      setEventListeners(formElement);
+    });
   });
 };
 
