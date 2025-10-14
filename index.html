@@ -132,7 +132,7 @@
             class="profile-popup__close-vector"
           />
         </button>
-        <form class="profile-popup__form">
+        <form class="profile-popup__form" novalidate>
           <h2 class="profile-popup__title">Editar perfil</h2>
           <fieldset class="profile-popup__fieldset">
             <input
@@ -140,18 +140,26 @@
               type="text"
               placeholder="Nome"
               id="name"
+              minlength="2"
+              maxlength="40"
               required
             />
+            <span class="profile-popup__error name-error"></span>
           </fieldset>
+
           <fieldset class="profile-popup__fieldset">
             <input
               class="profile-popup__input"
               type="text"
               placeholder="Sobre mim"
               id="about"
+              minlength="2"
+              maxlength="200"
               required
             />
+            <span class="profile-popup__error about-error"></span>
           </fieldset>
+
           <button class="profile-popup__submit-button">Salvar</button>
         </form>
       </div>
@@ -193,7 +201,7 @@
             <input
               class="cards-popup__input"
               type="url"
-              placeholder="Link de imagem"
+              placeholder="URL da imagem"
               id="cards-link"
               required
             />
