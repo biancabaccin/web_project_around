@@ -78,15 +78,15 @@
   height: 27.26px;
 }
 
-.cards-popup__input:invalid {
-  border-bottom: 1px solid #ff0000;
-}
-
 .cards-popup__input-error_active {
   color: #ff0000;
   font-size: 12px;
   display: block;
   margin-top: 5px;
+}
+
+.cards-popup__input_type_error {
+  border-bottom: 1px solid #ff0000;
 }
 
 .cards-popup__add-button {
