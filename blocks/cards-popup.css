@@ -78,6 +78,17 @@
   height: 27.26px;
 }
 
+.cards-popup__input:invalid {
+  border-bottom: 1px solid #ff0000;
+}
+
+.cards-popup__input-error_active {
+  color: #ff0000;
+  font-size: 12px;
+  display: block;
+  margin-top: 5px;
+}
+
 .cards-popup__add-button {
   max-width: 358px;
   width: 100%;
@@ -93,6 +104,14 @@
 
 .cards-popup__add-button:hover {
   opacity: 80%;
+}
+
+.cards-popup__add-button_inactive {
+  background-color: #ffffff;
+  color: #cccccc;
+  cursor: not-allowed;
+  pointer-events: none;
+  border: 1px solid #cccccc;
 }
 
 .cards-popup__opened {
@@ -165,4 +184,8 @@
     font-size: 14px;
     margin: 48px 0 25px;
   }
+}
+
+.cards-popup__input-error_active {
+  font-size: 10px;
 }

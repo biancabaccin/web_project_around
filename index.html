@@ -186,7 +186,7 @@
             class="cards-popup__close-vector"
           />
         </button>
-        <form class="cards-popup__form">
+        <form class="cards-popup__form" novalidate>
           <h2 class="cards-popup__title">Novo Local</h2>
           <fieldset class="cards-popup__fieldset">
             <input
@@ -194,8 +194,13 @@
               type="text"
               placeholder="Título"
               id="cards-title"
+              minlength="2"
+              maxlength="30"
               required
             />
+            <span
+              class="cards-popup__input-error cards-popup__input-error_title"
+            ></span>
           </fieldset>
           <fieldset class="cards-popup__fieldset">
             <input
@@ -205,6 +210,9 @@
               id="cards-link"
               required
             />
+            <span
+              class="cards-popup__input-error cards-popup__input-error_link"
+            ></span>
           </fieldset>
           <button class="cards-popup__add-button">Criar</button>
         </form>
