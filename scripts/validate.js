@@ -83,3 +83,20 @@ enableValidation({
   inputErrorClass: "cards-popup__input_type_error",
   errorClass: "cards-popup__input-error_active",
 });
+
+//Fecha Pop-up ao clicar na Sobreposição
+
+const closePopupOnOverlayClick = (popupSelector, closePopupFunction) => {
+  const popup = document.querySelector(popupSelector);
+  popup.addEventListener("click", (evt) => {
+    if (evt.target === popup) {
+      closePopupFunction();
+    }
+  });
+};
+
+//Pop-ups:
+
+closePopupOnOverlayClick(".profile-popup", closeProfilePopup);
+closePopupOnOverlayClick(".cards-popup", closeCardsPopup);
+closePopupOnOverlayClick(".photo-popup", closePhotoPopup);
