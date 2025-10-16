@@ -84,12 +84,19 @@ enableValidation({
   errorClass: "cards-popup__input-error_active",
 });
 
-//Fecha Pop-up ao clicar na Sobreposição
+//Fecha Pop-up clicando na Sobreposição
 
 const closePopupOnOverlayClick = (popupSelector, closePopupFunction) => {
   const popup = document.querySelector(popupSelector);
   popup.addEventListener("click", (evt) => {
     if (evt.target === popup) {
+      closePopupFunction();
+    }
+  });
+
+  //Fecha pop-up com Esc
+  document.addEventListener("keydown", (evt) => {
+    if (evt.key === "Escape" || evt.key === "Esc") {
       closePopupFunction();
     }
   });
