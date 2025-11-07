@@ -1,4 +1,5 @@
 import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
 
 //Profile-popup
 
@@ -155,7 +156,7 @@ addCardForm.addEventListener("submit", function (evt) {
   closeCardsPopup();
 });
 
-//Photo-popup
+//Fecha Photo-popup clicando fora da imagem
 
 const closePopupOnOverlayClick = (popupSelector, closePopupFunction) => {
   const popup = document.querySelector(popupSelector);
@@ -178,3 +179,35 @@ const closePopupOnOverlayClick = (popupSelector, closePopupFunction) => {
 closePopupOnOverlayClick(".profile-popup", closeProfilePopup);
 closePopupOnOverlayClick(".cards-popup", closeCardsPopup);
 closePopupOnOverlayClick(".photo-popup", closePhotoPopup);
+
+// Validator:
+
+// Para Profile
+const profileFormValidator = new FormValidator(
+  {
+    formSelector: ".profile-popup__form",
+    inputSelector: ".profile-popup__input",
+    submitButtonSelector: ".profile-popup__submit-button",
+    inactiveButtonClass: "profile-popup__submit-button_inactive",
+    inputErrorClass: "profile-popup__input_type_error",
+    errorClass: "profile-popup__input-error_active",
+  },
+  document.querySelector(".profile-popup__form")
+);
+
+profileFormValidator.enableValidation();
+
+// Para Cards
+const cardsFormValidator = new FormValidator(
+  {
+    formSelector: ".cards-popup__form",
+    inputSelector: ".cards-popup__input",
+    submitButtonSelector: ".cards-popup__add-button",
+    inactiveButtonClass: "cards-popup__add-button_inactive",
+    inputErrorClass: "cards-popup__input_type_error",
+    errorClass: "cards-popup__input-error_active",
+  },
+  document.querySelector(".cards-popup__form")
+);
+
+cardsFormValidator.enableValidation();
