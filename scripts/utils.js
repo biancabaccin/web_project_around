@@ -89,7 +89,7 @@ export function closePopupOnOverlayClick(popupSelector, closePopupFunction) {
 
   // Fecha pop-up com a tecla Esc
   document.addEventListener("keydown", (evt) => {
-    if (evt.key === "Escape" || evt.key === "Esc") {
+    if (evt.key === "Escape") {
       closePopupFunction();
     }
   });

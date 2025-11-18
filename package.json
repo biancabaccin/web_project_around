@@ -1,0 +1,20 @@
+{
+  "name": "web_project_around",
+  "version": "1.0.0",
+  "description": "Around the U.S. é um projeto do programa de Web Development da TripleTen, focado na criação de uma página interativa onde os usuários podem adicionar, remover, ou curtir fotos.\r O projeto foi desenvolvido utilizando HTML e CSS, com JavaScript responsável por definir seu comportamento dinâmico. Foram implementados recursos como @import, @font-face, @media e layout com CSS Grid. Em paralelo, o design segue os modelos disponibilizados no Figma e adota a metodologia BEM para a estruturação e organização do código.",
+  "homepage": "https://github.com/biancabaccin/web_project_around#readme",
+  "bugs": {
+    "url": "https://github.com/biancabaccin/web_project_around/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biancabaccin/web_project_around.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
