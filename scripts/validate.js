@@ -6,9 +6,7 @@ const enableValidation = (config) => {
       evt.preventDefault();
     });
 
-    const inputList = Array.from(
-      formElement.querySelectorAll(config.inputSelector)
-    );
+    const inputList = Array.from(formElement.querySelectorAll(config.Selector));
     const buttonElement = formElement.querySelector(
       config.submitButtonSelector
     );
