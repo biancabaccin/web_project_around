@@ -7,6 +7,8 @@
   background-color: rgba(0, 0, 0, 0.5);
   font-family: "Inter", Arial, sans-serif;
   display: none; /* ocuta popup */
+  align-items: center;
+  justify-content: center;
 }
 
 .cards-popup__container {
@@ -15,10 +17,6 @@
   background-color: #ffffff;
   border-radius: 10px;
   position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
 }
 
 .cards-popup__close-button_mod-40px {
@@ -115,7 +113,7 @@
 }
 
 .cards-popup__opened {
-  display: block;
+  display: flex;
 }
 
 @media screen and (max-width: 650px) {
