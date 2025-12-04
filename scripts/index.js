@@ -1,4 +1,4 @@
-import { initialCards } from "./utils.js";
+// import { initialCards } from "./utils.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
@@ -6,6 +6,8 @@ import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Api from "../components/Api.js";
+
+//API
 
 const api = new Api({
   baseUrl: "https://around-api.pt-br.tripleten-services.com/v1",
@@ -19,11 +21,35 @@ api
   .getUserInfo()
   .then((userData) => {
     userInfo.setUserInfo(userData);
-    console.log(userData);
   })
   .catch((err) => {
     console.log("Error", err);
   });
+
+let cardSection;
+
+api
+  .getInitialCards()
+  .then((cardsData) => {
+    console.log(cardsData);
+
+    cardSection = new Section(
+      {
+        items: cardsData,
+        renderer: (cardData) => {
+          return createCard(cardData);
+        },
+      },
+      ".elements"
+    );
+
+    cardSection.renderItems();
+  })
+  .catch((err) => {
+    console.log("Error, cards not found", err);
+  });
+
+// UserInfo
 
 const userInfo = new UserInfo({
   userName: ".profile__name",
@@ -40,16 +66,6 @@ function createCard(cardData) {
   });
   return card.generateCard();
 }
-
-const cardSection = new Section(
-  {
-    items: initialCards,
-    renderer: (cardData) => {
-      return createCard(cardData);
-    },
-  },
-  ".elements"
-);
 
 // Form Popups
 
@@ -83,8 +99,6 @@ document.querySelectorAll(".profile__add-button").forEach((btn) =>
 editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
 imagePopup.setEventListeners();
-
-cardSection.renderItems();
 
 // Validator
 
