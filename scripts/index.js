@@ -5,6 +5,25 @@ import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import Api from "../components/Api.js";
+
+const api = new Api({
+  baseUrl: "https://around-api.pt-br.tripleten-services.com/v1",
+  headers: {
+    authorization: "5539db1e-c173-456f-82b8-5cc813b2c1c7",
+    "Content-Type": "application/json",
+  },
+});
+
+api
+  .getUserInfo()
+  .then((userData) => {
+    userInfo.setUserInfo(userData);
+    console.log(userData);
+  })
+  .catch((err) => {
+    console.log("Error", err);
+  });
 
 const userInfo = new UserInfo({
   userName: ".profile__name",
@@ -16,7 +35,6 @@ const imagePopup = new PopupWithImage(".photo-popup");
 // Create-Card
 
 function createCard(cardData) {
-  console.log("Dados do card:", cardData);
   const card = new Card(cardData, ".elements__template", (link, name) => {
     imagePopup.open(link, name);
   });
