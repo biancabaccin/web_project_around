@@ -64,6 +64,22 @@ const handleProfileFormSubmit = (formData) => {
     });
 };
 
+const handleCardSubmit = (cardData) => {
+  api
+    .addCard({
+      name: cardData.name,
+      link: cardData.link,
+    })
+    .then((newCard) => {
+      const cardElement = createCard(newCard);
+      cardSection.addItem(cardElement);
+      addCardPopup.close();
+    })
+    .catch((err) => {
+      console.log("Error adding a new card:", err);
+    });
+};
+
 // UserInfo
 
 const userInfo = new UserInfo({
@@ -75,12 +91,12 @@ const imagePopup = new PopupWithImage(".photo-popup");
 
 // Create-Card
 
-function createCard(cardData) {
+const createCard = (cardData) => {
   const card = new Card(cardData, ".elements__template", (link, name) => {
     imagePopup.open(link, name);
   });
   return card.generateCard();
-}
+};
 
 // Form Popups
 
@@ -90,9 +106,13 @@ const editProfilePopup = new PopupWithForm(
 );
 
 const addCardPopup = new PopupWithForm(".cards-popup", (inputData) => {
-  const cardElement = createCard(inputData);
-  cardSection.addItem(cardElement);
+  handleCardSubmit(inputData);
 });
+
+// const addCardPopup = new PopupWithForm(".cards-popup", (inputData) => {
+//   const cardElement = createCard(inputData);
+//   cardSection.addItem(cardElement);
+// });
 
 // Profile Buttons
 
