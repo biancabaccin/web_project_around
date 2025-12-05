@@ -1,14 +1,24 @@
 export default class Card {
-  constructor(data, templateSelector, handleCardClick) {
+  constructor(
+    data,
+    cardSelector,
+    handleImageClick,
+    handleDeleteClick,
+    handleLikeClick
+  ) {
     this._name = data.name;
     this._link = data.link;
-    this._templateSelector = templateSelector;
-    this._handleCardClick = handleCardClick;
+    this._cardId = data._id;
+    this._isLiked = data.isLiked;
+    this._cardSelector = cardSelector;
+    this._handleImageClick = handleImageClick;
+    this._handleDeleteClick = handleDeleteClick;
+    this._handleLikeClick = handleLikeClick;
   }
 
   _getTemplate() {
     const cardTemplate = document
-      .querySelector(this._templateSelector)
+      .querySelector(this._cardSelector)
       .content.querySelector(".elements__element")
       .cloneNode(true);
 
@@ -16,18 +26,30 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._likeButton.addEventListener("click", () => this._handleLikeClick());
+    this._likeButton.addEventListener("click", () => {
+      this._handleLikeClick(this);
+    });
 
-    this._deleteButton.addEventListener("click", () =>
-      this._handleDeleteCard()
-    );
-    this._imageButton.addEventListener("click", () =>
-      this._handleCardClick(this._link, this._name)
-    );
+    this._deleteButton.addEventListener("click", () => {
+      this._handleDeleteClick(this);
+    });
+
+    this._imageButton.addEventListener("click", () => {
+      this._handleImageClick(this._link, this._name);
+    });
   }
 
-  _handleLikeClick() {
-    this._likeButton.classList.toggle("elements__like-button_active");
+  _updateLikeButton() {
+    if (this._isLiked) {
+      this._likeButton.classList.add("elements__like-button_active");
+    } else {
+      this._likeButton.classList.remove("elements__like-button_active");
+    }
+  }
+
+  updateLikeStatus(isLiked) {
+    this._isLiked = isLiked;
+    this._updateLikeButton();
   }
 
   _handleDeleteCard() {
@@ -50,6 +72,8 @@ export default class Card {
     this._titleElement.textContent = this._name;
 
     this._setEventListeners();
+
+    this._updateLikeButton();
 
     return this._element;
   }

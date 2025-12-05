@@ -80,6 +80,45 @@ const handleCardSubmit = (cardData) => {
     });
 };
 
+//Like and unLike Cards
+
+const handleLikeClick = (card) => {
+  if (card._isLiked) {
+    api
+      .unlikeCard(card._cardId)
+      .then((updatedCard) => {
+        card.updateLikeStatus(updatedCard.isLiked);
+      })
+      .catch((error) => {
+        console.error("Error unliking the card:", error);
+      });
+  } else {
+    api
+      .likeCard(card._cardId)
+      .then((updatedCard) => {
+        card.updateLikeStatus(updatedCard.isLiked);
+      })
+      .catch((error) => {
+        console.error("Error liking the card:", error);
+      });
+  }
+};
+
+const handleDeleteClick = (card) => {
+  api
+    .deleteCard(card._cardId)
+    .then(() => {
+      card._element.remove();
+    })
+    .catch((error) => {
+      console.error("Error deleting the card:", error);
+    });
+};
+
+const handleImageClick = (link, name) => {
+  imagePopup.open(link, name);
+};
+
 // UserInfo
 
 const userInfo = new UserInfo({
@@ -92,9 +131,13 @@ const imagePopup = new PopupWithImage(".photo-popup");
 // Create-Card
 
 const createCard = (cardData) => {
-  const card = new Card(cardData, ".elements__template", (link, name) => {
-    imagePopup.open(link, name);
-  });
+  const card = new Card(
+    cardData,
+    ".elements__template",
+    handleImageClick,
+    handleDeleteClick,
+    handleLikeClick
+  );
   return card.generateCard();
 };
 
