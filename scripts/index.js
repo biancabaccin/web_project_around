@@ -23,7 +23,7 @@ api
     userInfo.setUserInfo(userData);
   })
   .catch((err) => {
-    console.log("Error", err);
+    console.log("Error:", err);
   });
 
 let cardSection;
@@ -46,8 +46,23 @@ api
     cardSection.renderItems();
   })
   .catch((err) => {
-    console.log("Error, cards not found", err);
+    console.log("Error, cards not found:", err);
   });
+
+const handleProfileFormSubmit = (formData) => {
+  api
+    .updateUserInfo({
+      name: formData.name,
+      about: formData.about,
+    })
+    .then((updatedUser) => {
+      console.log(updatedUser);
+      userInfo.setUserInfo(updatedUser);
+    })
+    .catch((err) => {
+      console.log("Error updating user info:", err);
+    });
+};
 
 // UserInfo
 
@@ -69,9 +84,10 @@ function createCard(cardData) {
 
 // Form Popups
 
-const editProfilePopup = new PopupWithForm(".profile-popup", (inputData) => {
-  userInfo.setUserInfo(inputData);
-});
+const editProfilePopup = new PopupWithForm(
+  ".profile-popup",
+  handleProfileFormSubmit
+);
 
 const addCardPopup = new PopupWithForm(".cards-popup", (inputData) => {
   const cardElement = createCard(inputData);
