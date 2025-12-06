@@ -132,7 +132,7 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 319px) {
   .cards-popup__container {
     max-width: 282px;
     width: 100%;
