@@ -4,16 +4,20 @@ export default class Card {
     cardSelector,
     handleImageClick,
     handleDeleteClick,
-    handleLikeClick
+    handleLikeClick,
+    currentUserId
   ) {
     this._name = data.name;
     this._link = data.link;
     this._cardId = data._id;
     this._isLiked = data.isLiked;
+    this._ownerId = data.owner;
+
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleDeleteClick = handleDeleteClick;
     this._handleLikeClick = handleLikeClick;
+    this._currentUserId = currentUserId;
   }
 
   _getTemplate() {
@@ -74,6 +78,10 @@ export default class Card {
     this._setEventListeners();
 
     this._updateLikeButton();
+
+    if (this._ownerId !== this._currentUserId) {
+      this._deleteButton.style.display = "none";
+    }
 
     return this._element;
   }

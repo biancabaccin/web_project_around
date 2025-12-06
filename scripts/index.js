@@ -5,6 +5,7 @@ import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import Api from "../components/Api.js";
 
 //API
@@ -17,22 +18,19 @@ const api = new Api({
   },
 });
 
+let cardSection;
+
+let currentUserId = null;
+
 api
   .getUserInfo()
   .then((userData) => {
     userInfo.setUserInfo(userData);
+    currentUserId = userData._id;
+
+    return api.getInitialCards();
   })
-  .catch((err) => {
-    console.log("Error:", err);
-  });
-
-let cardSection;
-
-api
-  .getInitialCards()
   .then((cardsData) => {
-    console.log(cardsData);
-
     cardSection = new Section(
       {
         items: cardsData,
@@ -42,11 +40,10 @@ api
       },
       ".elements"
     );
-
     cardSection.renderItems();
   })
   .catch((err) => {
-    console.log("Error, cards not found:", err);
+    console.log("Error:", err);
   });
 
 const handleProfileFormSubmit = (formData) => {
@@ -104,15 +101,26 @@ const handleLikeClick = (card) => {
   }
 };
 
+// Delete-Card
+
+const deleteConfirmationPopup = new PopupWithConfirmation(".delete-popup");
+
+deleteConfirmationPopup.setEventListeners();
+
 const handleDeleteClick = (card) => {
-  api
-    .deleteCard(card._cardId)
-    .then(() => {
-      card._element.remove();
-    })
-    .catch((error) => {
-      console.error("Error deleting the card:", error);
-    });
+  deleteConfirmationPopup.setAction(() => {
+    api
+      .deleteCard(card._cardId)
+      .then(() => {
+        card._element.remove();
+        deleteConfirmationPopup.close();
+      })
+      .catch((error) => {
+        console.error("Error deleting the card:", error);
+      });
+  });
+
+  deleteConfirmationPopup.open();
 };
 
 const handleImageClick = (link, name) => {
@@ -128,7 +136,7 @@ const userInfo = new UserInfo({
 
 const imagePopup = new PopupWithImage(".photo-popup");
 
-// Create-Card
+// Create - Card
 
 const createCard = (cardData) => {
   const card = new Card(
@@ -136,7 +144,8 @@ const createCard = (cardData) => {
     ".elements__template",
     handleImageClick,
     handleDeleteClick,
-    handleLikeClick
+    handleLikeClick,
+    currentUserId
   );
   return card.generateCard();
 };
