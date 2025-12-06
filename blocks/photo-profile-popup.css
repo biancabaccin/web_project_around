@@ -1,0 +1,138 @@
+.photo-profile-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-family: "Inter", Arial, sans-serif;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-profile-popup__container {
+  max-width: 430px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo-profile-popup__close-button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: -36px;
+  right: -45px;
+}
+
+.photo-profile-popup__close-button:hover {
+  opacity: 60%;
+}
+
+.photo-profile-popup__title {
+  max-width: 358px;
+  width: 100%;
+  padding: 34px 36px 38px;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.photo-profile-popup__fieldset {
+  max-width: 358px;
+  width: 100%;
+  height: 29px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0;
+  margin-bottom: 29.74px;
+  display: flex;
+  flex-direction: column;
+}
+
+.photo-profile-popup__fieldset:last-of-type {
+  margin-bottom: 0;
+}
+
+.photo-profile-popup__input {
+  border: none;
+  font-size: 14px;
+  line-height: 1;
+  height: 29px;
+}
+
+.photo-profile-popup:invalid {
+  border-bottom: 1px solid #ff0000;
+}
+
+.photo-profile-popup__input-error_active {
+  color: #ff0000;
+  font-size: 12px;
+  display: block;
+  margin-top: 5px;
+}
+
+.photo-profile-popup__submit-button {
+  max-width: 358px;
+  width: 100%;
+  height: 50.15px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 48px 36px 36px;
+}
+
+.photo-profile-popup__submit-button:hover {
+  opacity: 80%;
+}
+
+.photo-profile-popup__opened {
+  display: flex;
+}
+
+@media screen and (max-width: 550px) {
+  .photo-profile-popup__container {
+    max-width: 75vw;
+  }
+
+  .photo-profile-popup__close-button {
+    width: 30px;
+    height: 30px;
+    top: -30px;
+    right: -35px;
+  }
+
+  .photo-profile-popup__title {
+    font-size: 18px;
+  }
+
+  .photo-profile-popup__submit-button {
+    max-width: 60vw;
+    margin: 36px 34px 34px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .photo-profile-popup_close-button {
+    top: -25px;
+    right: -33px;
+  }
+
+  .photo-profile-popup__submit-button {
+    max-width: 60vw;
+    margin: 28px 25px 25px;
+  }
+}
