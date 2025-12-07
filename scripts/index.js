@@ -8,6 +8,16 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import Api from "../components/Api.js";
 
+// Form Popups
+
+const editProfilePopup = new PopupWithForm(".profile-popup");
+
+const addCardPopup = new PopupWithForm(".cards-popup", (inputData) => {
+  handleCardSubmit(inputData);
+});
+
+const avatarPopup = new PopupWithForm(".photo-profile-popup");
+
 //API
 
 const api = new Api({
@@ -47,21 +57,30 @@ api
   });
 
 const handleProfileFormSubmit = (formData) => {
+  editProfilePopup.renderLoading(true, "Salvando...");
+
   api
     .updateUserInfo({
       name: formData.name,
       about: formData.about,
     })
     .then((updatedUser) => {
-      console.log(updatedUser);
       userInfo.setUserInfo(updatedUser);
+      editProfilePopup.close();
     })
     .catch((err) => {
       console.log("Error updating user info:", err);
+    })
+    .finally(() => {
+      editProfilePopup.renderLoading(false);
     });
 };
 
+editProfilePopup.setSubmitHandler(handleProfileFormSubmit);
+
 const handleCardSubmit = (cardData) => {
+  addCardPopup.renderLoading(true, "Salvando...");
+
   api
     .addCard({
       name: cardData.name,
@@ -74,6 +93,9 @@ const handleCardSubmit = (cardData) => {
     })
     .catch((err) => {
       console.log("Error adding a new card:", err);
+    })
+    .finally(() => {
+      addCardPopup.renderLoading(false);
     });
 };
 
@@ -102,6 +124,7 @@ const handleLikeClick = (card) => {
 };
 
 const handleAvatarSubmit = (formData) => {
+  avatarPopup.renderLoading(true, "Salvando...");
   api
     .updateUserAvatar({
       avatar: formData.link,
@@ -113,8 +136,13 @@ const handleAvatarSubmit = (formData) => {
     })
     .catch((err) => {
       console.log("Error updating avatar:", err);
+    })
+    .finally(() => {
+      avatarPopup.renderLoading(false);
     });
 };
+
+avatarPopup.setSubmitHandler(handleAvatarSubmit);
 
 // Delete-Card
 
@@ -124,6 +152,7 @@ deleteConfirmationPopup.setEventListeners();
 
 const handleDeleteClick = (card) => {
   deleteConfirmationPopup.setAction(() => {
+    deleteConfirmationPopup.renderLoading(true, "Salvando...");
     api
       .deleteCard(card._cardId)
       .then(() => {
@@ -132,6 +161,9 @@ const handleDeleteClick = (card) => {
       })
       .catch((error) => {
         console.error("Error deleting the card:", error);
+      })
+      .finally(() => {
+        deleteConfirmationPopup.renderLoading(false);
       });
   });
 
@@ -165,22 +197,6 @@ const createCard = (cardData) => {
   );
   return card.generateCard();
 };
-
-// Form Popups
-
-const editProfilePopup = new PopupWithForm(
-  ".profile-popup",
-  handleProfileFormSubmit
-);
-
-const addCardPopup = new PopupWithForm(".cards-popup", (inputData) => {
-  handleCardSubmit(inputData);
-});
-
-const avatarPopup = new PopupWithForm(
-  ".photo-profile-popup",
-  handleAvatarSubmit
-);
 
 // Profile Buttons
 

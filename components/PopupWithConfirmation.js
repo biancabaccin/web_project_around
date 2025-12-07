@@ -12,6 +12,25 @@ export default class PopupWithConfirmation extends Popup {
     this._handleConfirmClick = action;
   }
 
+  renderLoading(isLoading, loadingText = "Deletando...") {
+    const submitButton = this._confirmButton;
+
+    if (isLoading) {
+      if (!submitButton.getAttribute("data-original-text")) {
+        submitButton.setAttribute(
+          "data-original-text",
+          submitButton.textContent
+        );
+      }
+      submitButton.textContent = loadingText;
+      submitButton.disabled = true;
+    } else {
+      submitButton.textContent =
+        submitButton.getAttribute("data-original-text");
+      submitButton.disabled = false;
+    }
+  }
+
   setEventListeners() {
     super.setEventListeners();
 
