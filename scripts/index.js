@@ -33,14 +33,11 @@ let cardSection;
 let currentUserId = null;
 
 api
-  .getUserInfo()
-  .then((userData) => {
+  .getUserAndCards()
+  .then(({ userData, cardsData }) => {
     userInfo.setUserInfo(userData);
     currentUserId = userData._id;
 
-    return api.getInitialCards();
-  })
-  .then((cardsData) => {
     cardSection = new Section(
       {
         items: cardsData,

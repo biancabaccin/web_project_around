@@ -11,7 +11,6 @@ export default class Api {
       if (res.ok) {
         return res.json();
       }
-      return Promise.reject(`Error: ${res.status}`);
     });
   }
 
@@ -22,7 +21,6 @@ export default class Api {
       if (res.ok) {
         return res.json();
       }
-      return Promise.reject(`Error: ${res.status}`);
     });
   }
 
@@ -100,5 +98,15 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify(avatarData),
     });
+  }
+
+  getUserAndCards() {
+    return Promise.all([this.getUserInfo(), this.getInitialCards()])
+      .then(([userData, cardsData]) => {
+        return { userData, cardsData };
+      })
+      .catch((err) => {
+        return Promise.reject(`Error: ${err}`);
+      });
   }
 }
