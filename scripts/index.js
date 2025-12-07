@@ -161,10 +161,12 @@ const addCardPopup = new PopupWithForm(".cards-popup", (inputData) => {
   handleCardSubmit(inputData);
 });
 
-// const addCardPopup = new PopupWithForm(".cards-popup", (inputData) => {
-//   const cardElement = createCard(inputData);
-//   cardSection.addItem(cardElement);
-// });
+const handleAvatarSubmit = (formData) => {};
+
+const avatarPopup = new PopupWithForm(
+  ".photo-profile-popup",
+  handleAvatarSubmit
+);
 
 // Profile Buttons
 
@@ -182,11 +184,18 @@ document.querySelectorAll(".profile__add-button").forEach((btn) =>
   })
 );
 
+document
+  .querySelector(".profile__image-button")
+  .addEventListener("click", () => {
+    avatarPopup.open();
+  });
+
 // Popups event listeners
 
 editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
 imagePopup.setEventListeners();
+avatarPopup.setEventListeners();
 
 // Validator
 
@@ -214,5 +223,18 @@ const cardsFormValidator = new FormValidator(
   document.querySelector(".cards-popup__form")
 );
 
+const avatarFormValidator = new FormValidator(
+  {
+    formSelector: ".photo-profile-popup__form",
+    inputSelector: ".photo-profile-popup__input",
+    submitButtonSelector: ".photo-profile-popup__submit-button",
+    inactiveButtonClass: "photo-profile-popup__submit-button_inactive",
+    inputErrorClass: "photo-profile-popup__input_type_error",
+    errorClass: "photo-profile-popup__input-error_active",
+  },
+  document.querySelector(".photo-profile-popup__form")
+);
+
 profileFormValidator.enableValidation();
 cardsFormValidator.enableValidation();
+avatarFormValidator.enableValidation();

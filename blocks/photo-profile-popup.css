@@ -17,10 +17,6 @@
   background-color: #ffffff;
   border-radius: 10px;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .photo-profile-popup__close-button {
@@ -37,6 +33,12 @@
 
 .photo-profile-popup__close-button:hover {
   opacity: 60%;
+}
+
+.photo-profile-popup__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .photo-profile-popup__title {
@@ -97,6 +99,14 @@
 
 .photo-profile-popup__submit-button:hover {
   opacity: 80%;
+}
+
+.photo-profile-popup__submit-button_inactive {
+  background-color: #ffffff;
+  color: #cccccc;
+  cursor: not-allowed;
+  pointer-events: none;
+  border: 1px solid #cccccc;
 }
 
 .photo-profile-popup__opened {

@@ -273,21 +273,23 @@
             />
           </svg>
         </button>
-        <p class="photo-profile-popup__title">Alterar a foto do perfil</p>
-        <fieldset class="photo-profile-popup__fieldset">
-          <input
-            class="photo-profile-popup__input"
-            type="url"
-            placeholder="URL da imagem"
-            id="photo-link"
-            name="link"
-            required
-          />
-          <span
-            class="photo-profile-popup__input-error photo-profile-popup-error"
-          ></span>
-        </fieldset>
-        <button class="photo-profile-popup__submit-button">Salvar</button>
+        <form class="photo-profile-popup__form" novalidate>
+          <p class="photo-profile-popup__title">Alterar a foto do perfil</p>
+          <fieldset class="photo-profile-popup__fieldset">
+            <input
+              class="photo-profile-popup__input"
+              type="url"
+              placeholder="URL da imagem"
+              id="photo-link"
+              name="link"
+              required
+            />
+            <span
+              class="photo-profile-popup__input-error photo-link-error"
+            ></span>
+          </fieldset>
+          <button class="photo-profile-popup__submit-button">Salvar</button>
+        </form>
       </div>
     </div>
 
