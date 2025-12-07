@@ -101,6 +101,21 @@ const handleLikeClick = (card) => {
   }
 };
 
+const handleAvatarSubmit = (formData) => {
+  api
+    .updateUserAvatar({
+      avatar: formData.link,
+    })
+    .then((response) => response.json())
+    .then((updatedUser) => {
+      userInfo.setUserInfo(updatedUser);
+      avatarPopup.close();
+    })
+    .catch((err) => {
+      console.log("Error updating avatar:", err);
+    });
+};
+
 // Delete-Card
 
 const deleteConfirmationPopup = new PopupWithConfirmation(".delete-popup");
@@ -132,6 +147,7 @@ const handleImageClick = (link, name) => {
 const userInfo = new UserInfo({
   userName: ".profile__name",
   userJob: ".profile__description",
+  userAvatar: ".profile__image",
 });
 
 const imagePopup = new PopupWithImage(".photo-popup");
@@ -160,8 +176,6 @@ const editProfilePopup = new PopupWithForm(
 const addCardPopup = new PopupWithForm(".cards-popup", (inputData) => {
   handleCardSubmit(inputData);
 });
-
-const handleAvatarSubmit = (formData) => {};
 
 const avatarPopup = new PopupWithForm(
   ".photo-profile-popup",
