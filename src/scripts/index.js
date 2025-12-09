@@ -125,7 +125,6 @@ const handleAvatarSubmit = (formData) => {
     .updateUserAvatar({
       avatar: formData.link,
     })
-    .then((response) => response.json())
     .then((updatedUser) => {
       userInfo.setUserInfo(updatedUser);
       avatarPopup.close();
